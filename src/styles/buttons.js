@@ -37,3 +37,23 @@ export const ButtonBuy = styled.button`
     background-color: ${variantwhite};
   }
 `;
+export const TopButton = styled.button`
+  padding: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: ${(props) => (props.type === "filled" ? "none" : "1px solid black")};
+  background-color: ${(props) =>
+    props.type === "filled" ? "black" : "transparent"};
+  color: ${(props) => props.type === "filled" && "white"};
+`;
+
+export const CheckButton = styled.button`
+  width: 100%;
+  padding: 1rem;
+  background-color: ${black};
+  color: ${white};
+  font-weight: 600;
+  border-radius: 0.1rem;
+  border: none;
+  cursor: pointer;
+`;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { mobil } from "./responsive";
+import { mobil } from "./responsive";
 import {
   green,
   white,
@@ -20,7 +20,19 @@ export const ContainerFlex = styled(Container)`
   align-items: center;
   justify-content: center;
 `;
+export const Bottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  ${mobil({ flexDirection: "column" })}
+`;
+export const Info = styled.div`
+  flex: 3;
+`;
 
+export const ProductDetails = styled.div`
+  flex: 2;
+  display: flex;
+`;
 export const ContainerAnnouncement = styled(ContainerFlex)`
   height: 3rem;
   background-color: ${green};
@@ -223,4 +235,51 @@ export const AmountContainer = styled(ContainerFlex)`
 `;
 export const WrapperCart = styled.div`
   padding: 2rem;
+`;
+export const TopTexts = styled.div`
+  ${mobil({ display: "none" })}
+`;
+
+export const Details = styled.div`
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  ${mobil({ margin: ".5rem 0" })}
+`;
+export const ProductColor = styled.div`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  ${mobil({ marginBottom: "1rem" })}
+`;
+export const ProductAmountContainer = styled(ContainerFlex)`
+  justify-content: none;
+  margin-bottom: 2rem;
+`;
+export const ProductAmount = styled.div`
+  font-size: 2.4rem;
+  margin: 0.5rem;
+  ${mobil({ margin: ".5rem 1.5rem", fontSize: "3rem" })}
+`;
+export const ProductPrice = styled.div`
+  font-size: 3rem;
+  font-weight: 200;
+  ${mobil({ margin: "1rem 0" })}
+`;
+export const Summary = styled.div`
+  flex: 1;
+  border: 0.5px solid lightgray;
+  border-radius: 1rem;
+  padding: 2rem;
+  min-height: 50vh;
+  ${mobil({ marginTop: "2rem" })}
+`;
+export const SummaryItem = styled.div`
+  margin: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.type === "total" && "2.4rem"};
 `;

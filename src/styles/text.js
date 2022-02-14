@@ -1,3 +1,4 @@
+import { mobil } from "./responsive";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { black, hoverBlack, green } from "./colors";
@@ -15,6 +16,7 @@ export const StyledLink = styled(Link)`
 
 export const H1 = styled.h1`
   font-weight: bold;
+  text-align: center;
 `;
 export const Title = styled(H1)`
   margin: 2rem;
@@ -90,4 +92,24 @@ export const Amount = styled.span`
   align-items: center;
   justify-content: center;
   margin: 0 0.5rem;
+`;
+
+export const TitleCard = styled(H1)`
+  font-weight: 300;
+  text-align: center;
+`;
+export const TopText = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 1rem;
+`;
+export const ProductSpan = styled.span`
+  ${mobil({ marginBottom: "1rem" })}
+`;
+export const SpanText = styled.span``;
+
+export const Hr = styled.hr`
+  background-color: #131212;
+  border: none;
+  height: 1px;
 `;

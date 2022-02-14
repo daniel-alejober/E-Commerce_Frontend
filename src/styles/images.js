@@ -9,6 +9,9 @@ export const ImageProduct = styled.img`
   height: 75%;
   z-index: 100;
 `;
+export const ImageCart = styled.img`
+  width: 20rem;
+`;
 
 export const ImageSlide = styled.img`
   height: 80%;
