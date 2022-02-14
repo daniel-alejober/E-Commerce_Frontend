@@ -1,0 +1,9 @@
+export const green = "#008080";
+export const white = "#fcf5f5";
+export const variantwhite = "#fcf5f5";
+export const lightBlue = "#f5fbfd";
+export const skyBlue = "#c8e8f3";
+export const beige = "#f7d0d0";
+export const gray = "#836c6c";
+export const black = " #161414";
+export const hoverBlack = "#454141";
