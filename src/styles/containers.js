@@ -273,7 +273,7 @@ export const Summary = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 1rem;
   padding: 2rem;
-  min-height: 50vh;
+  max-height: 60vh;
   ${mobil({ marginTop: "2rem" })}
 `;
 export const SummaryItem = styled.div`

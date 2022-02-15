@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { clienteAxiosPublic } from "../helpers/axios";
 
 /*en canidad son 2000 ya que stripe maneja centavos seran igual a 200
 stripeKey es la clave publica */
-const publicKey =
-  "pk_test_51KKDAwHVg71ulzYDgZRJyNTFHPFQBu9RDI73OBQJNaxy8B4vaU5pU2K6oVKNtfscAfnSYwZX790DT8fZI55RYsLe006TYiTIZI";
-const PayLegacy = () => {
+const publicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
+
+const PayLegacy = ({ children, cart }) => {
   const [stripeToken, setStripeToken] = useState(null);
   let navigate = useNavigate();
   const onToken = (token) => {
@@ -16,15 +16,12 @@ const PayLegacy = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const respuesta = await axios.post(
-          "http://localhost:4000/api/checkout/payment",
-          {
-            /*tokenId y amount son valores que ya le especificamos al backen que va a recibir
-            por eso llevan ese nombre */
-            tokenId: stripeToken.id,
-            amount: 20000,
-          }
-        );
+        const respuesta = await clienteAxiosPublic.post("checkout/payment", {
+          /*tokenId y amount son valores que ya le especificamos al backen que va a recibir
+            por eso llevan ese nombre, le vamos a pasar la cantidad que esta en cart*/
+          tokenId: stripeToken.id,
+          amount: cart.total,
+        });
         console.log(respuesta);
         navigate("/success");
       } catch (error) {
@@ -32,22 +29,20 @@ const PayLegacy = () => {
       }
     };
     stripeToken && makeRequest();
-  }, [stripeToken,navigate]);
+  }, [stripeToken, navigate, cart.total]);
   return (
-    <div>
-      <StripeCheckout
-        name="Daniel"
-        image="https://cdn3.iconfinder.com/data/icons/animals-nature-body-add-on-vol-2/48/v-37-512.png"
-        billingAddress
-        shippingAddress
-        description="Your total is $200"
-        amount={20000}
-        token={onToken}
-        stripeKey={publicKey}
-      >
-        <button>Enviar</button>
-      </StripeCheckout>
-    </div>
+    <StripeCheckout
+      name="DanielPuppy"
+      image="https://avatars.githubusercontent.com/u/74944181?v=4"
+      billingAddress
+      shippingAddress
+      description={`Your total is ${cart.total}`}
+      amount={cart.total * 100}
+      token={onToken}
+      stripeKey={publicKey}
+    >
+      {children}
+    </StripeCheckout>
   );
 };
 

@@ -36,7 +36,7 @@ const Product = () => {
    */
   const id = location.pathname.split("/")[2];
   const [product, setproduct] = useState({});
-  const [quantify, setquantify] = useState(1);
+  const [quantity, setquantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
@@ -53,12 +53,12 @@ const Product = () => {
     getProduct();
   }, [id]);
 
-  /*Aumentaremos o disminuiremos la quantify de los productos */
+  /*Aumentaremos o disminuiremos la quantity de los productos */
   const handleQuantity = (type) => {
     if (type === "dec") {
-      quantify > 1 && setquantify(quantify - 1);
+      quantity > 1 && setquantity(quantity - 1);
     } else {
-      setquantify(quantify + 1);
+      setquantity(quantity + 1);
     }
   };
 
@@ -78,7 +78,7 @@ const Product = () => {
     dispatch(
       addProduct({
         ...product,
-        quantify,
+        quantity,
         color,
         size,
       })
@@ -131,7 +131,7 @@ const Product = () => {
               >
                 <Remove style={{ fontSize: 22 }} />
               </div>
-              <Amount>{quantify}</Amount>
+              <Amount>{quantity}</Amount>
               <div
                 onClick={() => handleQuantity("inc")}
                 style={{ cursor: "pointer" }}
