@@ -16,9 +16,14 @@
  */
 import { configureStore } from "@reduxjs/toolkit";
 import cartRedux from "./cartRedux";
+import userRedux from "./userRedux";
 
+/*
+ *Aqui estamos exportando los reducer de cada respectivo archivo para que sean colocados globalmente
+ */
 export default configureStore({
   reducer: {
     cart: cartRedux,
+    user: userRedux,
   },
 });

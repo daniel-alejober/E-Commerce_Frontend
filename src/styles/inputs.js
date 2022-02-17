@@ -33,3 +33,14 @@ export const FilterSize = styled.select`
   padding: 0.5rem;
   cursor: pointer;
 `;
+export const InputForm = styled.input`
+  flex: 1;
+  min-width: 40%;
+  margin: 1rem;
+  padding: 0.7rem;
+  outline: none;
+`;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;

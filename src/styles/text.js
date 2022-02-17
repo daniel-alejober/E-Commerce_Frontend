@@ -113,3 +113,10 @@ export const Hr = styled.hr`
   border: none;
   height: 1px;
 `;
+
+export const TitleLogin = styled.h1`
+  font-size: 2.4rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 1rem;
+`;

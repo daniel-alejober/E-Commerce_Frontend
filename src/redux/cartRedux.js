@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
  * tenemos que instalar @reduxjs/toolkit y react-redux,
  * importamos createSlice() y despues lo vamos a inicializar,
  * dandole un nombre y un estado inicial,
- * despues en el reducer va a ir las operacion que queremos que se hagan con el estado inicial
+ * despues en el reducer va a ir las funciones que queremos que se hagan con el estado inicial
  ! dentro de accion se encuentra el payload que es la data que le pasemos, cuando ya lo
  ! estemos usando en otros archivos, le pasaremos objetos con nombre y datos como
  ! product y price
