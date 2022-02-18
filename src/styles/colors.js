@@ -7,3 +7,5 @@ export const beige = "#f7d0d0";
 export const gray = "#836c6c";
 export const black = " #161414";
 export const hoverBlack = "#454141";
+export const red = "#dc3545";
+export const success = "#198754";

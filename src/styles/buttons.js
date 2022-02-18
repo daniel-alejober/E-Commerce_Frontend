@@ -44,7 +44,7 @@ export const TopButton = styled.button`
   border: ${(props) => (props.type === "filled" ? "none" : "1px solid black")};
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+  color: ${(props) => props.type === "filled" && white};
 `;
 
 export const CheckButton = styled.button`
@@ -66,4 +66,9 @@ export const ButtonLogin = styled.button`
   color: ${white};
   cursor: pointer;
   margin: 0 auto;
+
+  &:disabled {
+    color: ${green};
+    cursor: not-allowed;
+  }
 `;

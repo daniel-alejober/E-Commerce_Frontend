@@ -16,6 +16,7 @@ const userSlice = createSlice({
     currentUser: null,
     isFetching: false,
     error: false,
+    msg: "",
   },
   /*
    *No siempre vamos a necesitar el action ya que no vamos a enviar nada a otros archivos */

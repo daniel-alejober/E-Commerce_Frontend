@@ -1,13 +1,13 @@
 import { mobil } from "./responsive";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { black, hoverBlack, green } from "./colors";
+import { black, hoverBlack, green, red, success, white } from "./colors";
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${black};
   font-size: 1.8rem;
-  margin: 0 1rem;
+  margin: 1rem;
 
   &:hover {
     color: ${hoverBlack};
@@ -50,6 +50,14 @@ export const DescriptionSlide = styled.p`
   margin: 5rem 0;
   font-size: 2rem;
   font-weight: 500;
+`;
+export const AlertMsg = styled.p`
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  font-weight: 500;
+  color: ${white};
+  text-align: center;
+  background-color: ${(props) => (props.bg === "error" ? red : success)};
 `;
 export const Price = styled.p`
   font-weight: 100;

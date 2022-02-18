@@ -293,7 +293,7 @@ export const ContainerLogin = styled(ContainerFlex)`
   background-position: center top;
 `;
 export const WrapperLogin = styled.div`
-  width: 25%;
+  width: 30%;
   padding: 2rem;
   background-color: ${white};
   border-radius: 1rem;
