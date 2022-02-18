@@ -5,11 +5,12 @@
 */
 
 /*
-*Asi lo vamos a usar
+*Asi lo vamos a usar, le agregamos dentro del Provider los datos que querramos que sean persistentes
 *import { Provider } from "react-redux";
 *import store from "./redux/store"; 
 *<React.StrictMode>
     <Provider store={store}>
+     <PersistGate loading={null} persistor={persistor}>
       <App />
     </Provider>
 *</React.StrictMode>
@@ -19,11 +20,47 @@ import cartRedux from "./cartRedux";
 import userRedux from "./userRedux";
 
 /*
- *Aqui estamos exportando los reducer de cada respectivo archivo para que sean colocados globalmente
+ *Vamos a hacer la sesion persistente para que cuando reiniciemos no se pierdan los datos,
+ * debemos instalar redux-persist
  */
-export default configureStore({
-  reducer: {
-    cart: cartRedux,
-    user: userRedux,
-  },
-});
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
+/*
+ *Vamos a indicar que valores queremos que sean persistentes
+ */
+const persistedReducer = persistReducer(persistConfig, userRedux);
+
+/*
+ *Aqui estamos exportando los reducer de cada respectivo archivo para que sean colocados globalmente
+  !le vamos a agregar persistedReducer a user para que los datos sean persistentes y no se borren al recargar la pagina
+ */
+export const store = () =>
+  configureStore({
+    reducer: {
+      cart: cartRedux,
+      user: persistedReducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
+  });
+
+export let persistor = persistStore(configureStore);

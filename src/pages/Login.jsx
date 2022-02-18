@@ -20,8 +20,7 @@ const Login = () => {
    *ya que userRedux esta globalmente podemos usar su estado inicial pero ahora
    * ya contienen datos actualizados segun sea el caso de exito o fracaso */
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector((state) => state.user);
-  console.log(error);
+  const { isFetching, error, msg } = useSelector((state) => state.user);
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -40,7 +39,7 @@ const Login = () => {
       setErrors(true);
       setStylesAlert({
         bg: "error",
-        msg: "Something went wrong...",
+        msg: msg,
       });
       return;
     }

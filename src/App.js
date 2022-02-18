@@ -8,8 +8,10 @@ import Register from "./pages/Register";
 import ProductList from "./pages/ProductList";
 import PayLegacy from "./pages/PayLegacy";
 import Success from "./pages/Success";
+import { useSelector } from "react-redux";
 
 function App() {
+  // const user = useSelector((state) => state.user.currentUser);
   return (
     <>
       <GlobalStyle />
