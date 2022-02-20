@@ -15,7 +15,7 @@
     </Provider>
 *</React.StrictMode>
  */
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cartRedux from "./cartRedux";
 import userRedux from "./userRedux";
 
@@ -41,26 +41,27 @@ const persistConfig = {
   storage,
 };
 /*
+ *combinamos los reducers, asi tanto la sesion como los articulos que esten en el
+ *carrito se van a quedar*/
+const rootReducer = combineReducers({ user: userRedux, cart: cartRedux });
+
+/*
  *Vamos a indicar que valores queremos que sean persistentes
  */
-const persistedReducer = persistReducer(persistConfig, userRedux);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 /*
  *Aqui estamos exportando los reducer de cada respectivo archivo para que sean colocados globalmente
   !le vamos a agregar persistedReducer a user para que los datos sean persistentes y no se borren al recargar la pagina
  */
-export const store = () =>
-  configureStore({
-    reducer: {
-      cart: cartRedux,
-      user: persistedReducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }),
-  });
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
 
-export let persistor = persistStore(configureStore);
+export let persistor = persistStore(store);

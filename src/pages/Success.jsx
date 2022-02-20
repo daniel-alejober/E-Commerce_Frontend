@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 const Success = () => {
   let location = useLocation();
+  console.log(location);
 
   return <div>Exito</div>;
 };
