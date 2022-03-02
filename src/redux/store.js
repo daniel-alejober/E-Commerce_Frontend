@@ -7,11 +7,13 @@
 /*
 *Asi lo vamos a usar, le agregamos dentro del Provider los datos que querramos que sean persistentes
 *import { Provider } from "react-redux";
-*import store from "./redux/store"; 
+*import { PersistGate } from "redux-persist/integration/react";
+*import { store, persistor } from "./redux/store";
 *<React.StrictMode>
     <Provider store={store}>
      <PersistGate loading={null} persistor={persistor}>
       <App />
+      </PersistGate>
     </Provider>
 *</React.StrictMode>
  */
@@ -42,7 +44,9 @@ const persistConfig = {
 };
 /*
  *combinamos los reducers, asi tanto la sesion como los articulos que esten en el
- *carrito se van a quedar*/
+ *carrito se van a quedar
+ !tenemos que darles un nombre para asi poder encontrarlos en el redux
+ ! uno se llama user y el otro cart*/
 const rootReducer = combineReducers({ user: userRedux, cart: cartRedux });
 
 /*
